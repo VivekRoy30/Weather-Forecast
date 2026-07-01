@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ML Weather Forecast</title>
+    <link rel="icon" href="data:," />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="search-band">
+        <div>
+          <p class="eyebrow">Python machine learning weather</p>
+          <h1>Real-time forecast trained on recent hourly conditions</h1>
+        </div>
+        <form id="weather-form" class="search-form">
+          <label class="sr-only" for="city-input">City</label>
+          <input id="city-input" name="city" type="search" value="New York" autocomplete="address-level2" />
+          <button type="submit">Forecast</button>
+        </form>
+      </section>
+
+      <section class="summary-grid" aria-live="polite">
+        <article class="current-panel">
+          <div>
+            <p id="location-name" class="location">Loading...</p>
+            <p id="condition-label" class="condition">Fetching live weather</p>
+          </div>
+          <div class="temperature-row">
+            <span id="current-temp" class="temperature">--</span>
+            <span class="degree">°C</span>
+          </div>
+          <dl class="metrics">
+            <div>
+              <dt>Feels</dt>
+              <dd id="feels-like">--</dd>
+            </div>
+            <div>
+              <dt>Humidity</dt>
+              <dd id="humidity">--</dd>
+            </div>
+            <div>
+              <dt>Wind</dt>
+              <dd id="wind">--</dd>
+            </div>
+          </dl>
+        </article>
+
+        <article class="model-panel">
+          <p class="panel-label">Model</p>
+          <h2 id="model-name">Ridge regression</h2>
+          <dl class="model-stats">
+            <div>
+              <dt>Training samples</dt>
+              <dd id="training-samples">--</dd>
+            </div>
+            <div>
+              <dt>Recent error</dt>
+              <dd id="mean-error">--</dd>
+            </div>
+          </dl>
+          <p id="updated-at" class="updated">Waiting for data</p>
+        </article>
+      </section>
+
+      <section class="forecast-section">
+        <div class="section-heading">
+          <div>
+            <p class="panel-label">Next 24 hours</p>
+            <h2>ML forecast curve</h2>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="forecast-chart" width="1100" height="360"></canvas>
+        </div>
+      </section>
+
+      <section class="details-grid">
+        <article>
+          <p class="panel-label">Hourly</p>
+          <div id="hourly-list" class="hourly-list"></div>
+        </article>
+        <article>
+          <p class="panel-label">3 day outlook</p>
+          <div id="daily-list" class="daily-list"></div>
+        </article>
+      </section>
+    </main>
+
+    <div id="toast" class="toast" role="status"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
